@@ -8,7 +8,10 @@ output: html_document
 ```{r include=FALSE,echo=FALSE}
 require(tidyverse)
 require(tigerstats)
-TrialData <-read.csv(file="covid91.csv",header=TRUE)
+require(forcats)
+OldData <-read.csv(file="covid91.csv",header=TRUE)
+#recode aids to say covid and then remove the annoying "X" from the dataframe
+FinalData <- OldData %>% mutate(infected = recode(infected, aids = "covid", none = "OK" )) %>% select(-one_of("X"))
 ```
 
 # Introduction
