@@ -42,9 +42,31 @@ barchartGC(~infected+treatment,data=dataM,main="guy",type = "percent")
 barchartGC(~infected+treatment,data=dataQ,main="gay",type = "percent")
 barchartGC(~infected+treatment,data=dataD,main="DrugUsers",type = "percent")
 
+```
+
+## Numerical summary 
+
+```{r}
+tableF=xtabs(~infected+treatment,data=dataF)
+print(tableF)
+fisher.test(tableF)
+
+tableM=xtabs(~infected+treatment,data=dataM)
+print(tableM)
+fisher.test(tableM)
+
+tableQ=xtabs(~infected+treatment,data=dataQ)
+print(tableQ)
+fisher.test(tableQ)
+
+tableD=xtabs(~infected+treatment,data=dataD)
+print(tableD)
+fisher.test(tableD)
 
 
 ```
+
+
 
 # Discussion and Conclusion
 
