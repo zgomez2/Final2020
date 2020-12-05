@@ -23,50 +23,128 @@ A new  preventative vaccine (covid91) is under test in clinical trials. Given th
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
-
+We are using cat~cat
 # Results
 
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
+
+##Gals
+
+##Graphical summary 
+
 ```{r}
 dataF=filter(FinalData,sex=="gal")
-dataM=filter(FinalData,sex=="guy")
-dataQ=filter(FinalData,LGBTQ=="gay")
-dataD=filter(FinalData,DrugUser=="yes")
 ```
-## graphical summary  
+
 
 ```{r}
-barchartGC(~infected+treatment,data=dataF,main="gals",type = "percent")
-barchartGC(~infected+treatment,data=dataM,main="guy",type = "percent")
-barchartGC(~infected+treatment,data=dataQ,main="gay",type = "percent")
-barchartGC(~infected+treatment,data=dataD,main="DrugUsers",type = "percent")
+barchartGC(~infected + treatment,data=dataF,main="gals",type ="percent")
 
 ```
+It appears that the drug seems to be somewhat effective for the gals.Fewer people got sick when taking the drug than when taking th placebo .Approximately 64% of the people who took the pacebo ,whereas approximately 36% of tthee people who took the drug got sick . 
 
-## Numerical summary 
+##Numerical Result 
 
 ```{r}
 tableF=xtabs(~infected+treatment,data=dataF)
 print(tableF)
 fisher.test(tableF)
+```
+##Inferential results 
 
+```{r}
+fisher.test(tableF)
+```
+
+
+
+##Guys 
+
+##Graphical summary 
+
+
+```{r}
+dataM=filter(FinalData,sex=="guy")
+```
+
+
+
+```{r}
+barchartGC(~infected+treatment,data=dataM,main="guys",type ="percent")
+```
+  
+The graph shows the drug is not effective for the guys .It appears to be helping keep the guys from contracting covid .More who took the drug got sick than those who took the placebo .
+##Numerical Summary 
+
+```{r}
 tableM=xtabs(~infected+treatment,data=dataM)
 print(tableM)
 fisher.test(tableM)
 
-tableQ=xtabs(~infected+treatment,data=dataQ)
-print(tableQ)
-fisher.test(tableQ)
+```
+##Inferential Results for Guys 
 
-tableD=xtabs(~infected+treatment,data=dataD)
-print(tableD)
-fisher.test(tableD)
+```{r}
+fisher.test(tableM)
 
+```
+#Drug users
 
+#Graphical Summary 
+
+```{r}
+dataD=filter(FinalData,DrugUser=="yes")
 ```
 
 
+```{r}
+barchartGC(~infected+treatment,data=dataD,main="DrugUsers",type = "percent")
+```
+  
+The drug is working about the same for the drug users as it did for the gals .Approximately 64% of thse who took the placebo got sick,and approximately 36% of those who took the drug got sick .
+
+
+##Numerical Summary 
+
+```{r}
+tableD=xtabs(~infected+treatment,data=dataD)
+print(tableD)
+fisher.test(tableD)
+```
+
+##Inferential Results 
+
+```{r}
+fisher.test(tableD)
+```
+
+
+##LGBTQ
+
+##Grahical Summary 
+```{r}
+dataQ=filter(FinalData,LGBTQ=="gay")
+```
+
+
+```{r}
+barchartGC(~infected+treatment,data=dataQ,main="gay",type = "percent")
+```
+
+##Numerical Summary 
+
+```{r}
+tableQ=xtabs(~infected+treatment,data=dataQ)
+print(tableQ)
+fisher.test(tableQ)
+```
+
+##inferential Results 
+
+```{r}
+fisher.test(tableQ)
+```
 
 # Discussion and Conclusion
 
