@@ -29,9 +29,9 @@ We are using cat~cat
 <!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
 
 
-##Gals
+## Gals
 
-##Graphical summary 
+## Graphical summary for Gals 
 
 ```{r}
 dataF=filter(FinalData,sex=="gal")
@@ -39,29 +39,35 @@ dataF=filter(FinalData,sex=="gal")
 
 
 ```{r}
-barchartGC(~infected + treatment,data=dataF,main="gals",type ="percent")
 
+barchartGC(~infected+treatment,data=dataF,main="gals",type ="percent")
 ```
-It appears that the drug seems to be somewhat effective for the gals.Fewer people got sick when taking the drug than when taking th placebo .Approximately 64% of the people who took the pacebo ,whereas approximately 36% of tthee people who took the drug got sick . 
 
-##Numerical Result 
+It appears that the drug seems to be somewhat effective for the gals.Fewer people got sick when taking the drug than when taking the placebo .Approximately 64% of the people who took the placebo ,whereas approximately 36% of the people who took the drug got sick . 
+
+## Numerical Summary  for gals 
 
 ```{r}
-tableF=xtabs(~infected+treatment,data=dataF)
-print(tableF)
-fisher.test(tableF)
+table1 <- xtabs(~infected + treatment , data=dataF)
+rowPerc(table1)
+colPerc(table1)
 ```
-##Inferential results 
+
+The percentage of gals that got infected on the drug was33% and on the placebo was 67%.
+
+## Inferential results for gals
 
 ```{r}
-fisher.test(tableF)
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
 ```
+The odds of getting covid if you are a gal are about .5:1 .
 
 
+## Guys 
 
-##Guys 
-
-##Graphical summary 
+## Graphical summary for Guys 
 
 
 ```{r}
@@ -75,23 +81,30 @@ barchartGC(~infected+treatment,data=dataM,main="guys",type ="percent")
 ```
   
 The graph shows the drug is not effective for the guys .It appears to be helping keep the guys from contracting covid .More who took the drug got sick than those who took the placebo .
-##Numerical Summary 
+
+## Numerical Summary for Guys
 
 ```{r}
-tableM=xtabs(~infected+treatment,data=dataM)
-print(tableM)
-fisher.test(tableM)
+table1 <- xtabs(~infected + treatment , data=dataM)
+rowPerc(table1)
+colPerc(table1)
 
 ```
-##Inferential Results for Guys 
+It  looks like 58% of the people who got infected took  the drug,and 42% took a placebo .
+
+### Inferential Results for Guys 
 
 ```{r}
-fisher.test(tableM)
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
 
 ```
-#Drug users
+The odds of a guy getting covid if he takes the drug 1.5:1 greater than if he takes the placebo .
 
-#Graphical Summary 
+# Drug users
+
+## Graphical Summary for Drug users
 
 ```{r}
 dataD=filter(FinalData,DrugUser=="yes")
@@ -102,27 +115,31 @@ dataD=filter(FinalData,DrugUser=="yes")
 barchartGC(~infected+treatment,data=dataD,main="DrugUsers",type = "percent")
 ```
   
-The drug is working about the same for the drug users as it did for the gals .Approximately 64% of thse who took the placebo got sick,and approximately 36% of those who took the drug got sick .
+The drug is working about the same for the drug users as it did for the gals .Approximately 64% of these who took the placebo got sick,and approximately 36% of those who took the drug got sick .
 
 
-##Numerical Summary 
-
-```{r}
-tableD=xtabs(~infected+treatment,data=dataD)
-print(tableD)
-fisher.test(tableD)
-```
-
-##Inferential Results 
+## Numerical Summary for Drug users
 
 ```{r}
-fisher.test(tableD)
+table1 <- xtabs(~infected + treatment , data=dataD)
+rowPerc(table1)
+colPerc(table1)
 ```
 
+The percentage of Drug users that got infected while taking the drug was 33% and while taking the placebo was 67%.
+## Inferential Results for Drug users 
 
-##LGBTQ
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
 
-##Grahical Summary 
+```
+If you are a drg user the odds of getting covid are about .55:1.
+
+## LGBTQ
+
+## Grahical Summary for LGBTQ 
 ```{r}
 dataQ=filter(FinalData,LGBTQ=="gay")
 ```
@@ -132,20 +149,27 @@ dataQ=filter(FinalData,LGBTQ=="gay")
 barchartGC(~infected+treatment,data=dataQ,main="gay",type = "percent")
 ```
 
-##Numerical Summary 
+In this graph ,it appears that the drug is not at all effective for the LGBQ community .More then twice the number of people who took the drug than the placebo got sick with covid .
+
+## Numerical Summary For LGBTQ 
 
 ```{r}
-tableQ=xtabs(~infected+treatment,data=dataQ)
-print(tableQ)
-fisher.test(tableQ)
+table1 <- xtabs(~infected + treatment , data=dataQ)
+rowPerc(table1)
+colPerc(table1)
 ```
+In the LGBTQ  community ,the percentage of people who got infected on the drug was nearly 71% ,whereas on the placebo was nearly 29%.
 
-##inferential Results 
+## Inferential Results for LGBTQ
 
 ```{r}
-fisher.test(tableQ)
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+
 ```
+If you belong to the LGBTQ community the chances of getting infected if taking the drug are 2:5:1.
 
 # Discussion and Conclusion
-
+If you are a gal i do recommend for you to take the drug because it's effective on the gals because fewer people got infected when taking the drug .If you are a guy i do not recommend for you to take the drug because it's not effective the guys have 1:5:1 higher thn taking the placebo,the p-value for guys is 0.00058 .If you are a drug user i would recommend taking the drug because it is effective on them ,they got a less chance of getting injected with the drug then without the drug .For the LGBTQ community i would not recommend them to take the drug because even when they took the drug people will still getting sick .
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
